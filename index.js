@@ -74,15 +74,15 @@ if (args.length === 0) {
 
 const entries = [];
 
-    args.forEach(arg => {
-        const choices = arg.split('=');
-    
-        if (supportedCollections.indexOf(choices[0]) > -1) {
-            const collection = choices[0];
-            const count = (!isNaN(choices[1]) ? choices[1] : 1);
-            entries.push(getEntries(collection, count));
-        }
-    });
-    
-    console.log("Grabbing resources from SRD, let's make something fun with:", args.join('; '));
-    Promise.all(entries).then((results) => printResults(results));
+args.forEach(arg => {
+    const choices = arg.split('=');
+
+    if (supportedCollections.indexOf(choices[0]) > -1) {
+        const collection = choices[0];
+        const count = (!isNaN(choices[1]) ? choices[1] : 1);
+        entries.push(getEntries(collection, parseInt(count)));
+    }
+});
+
+console.log("Grabbing resources from SRD, let's make something fun with:", args.join('; '));
+Promise.all(entries).then((results) => printResults(results));
