@@ -1,0 +1,23 @@
+{
+  "name": "5esrd-rng",
+  "version": "1.0.0",
+  "description": "Utility to pull random entries from 5e API",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sprngr/5eSRD-RNG.git"
+  },
+  "author": "sprngr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sprngr/5eSRD-RNG/issues"
+  },
+  "homepage": "https://github.com/sprngr/5eSRD-RNG#readme"
+}
