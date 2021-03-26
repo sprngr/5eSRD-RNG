@@ -3,7 +3,24 @@
 const axios = require('axios').default;
 
 const BASE_URI = 'https://www.dnd5eapi.co';
-const supportedCollections = ['conditions', 'damage-types', 'equipment', 'features', 'magic-items', 'magic-schools', 'monsters', 'spells'];
+const supportedCollections = [
+    'classes',
+    'conditions',
+    'damage-types',
+    'equipment', 
+    'features',
+    'languages',
+    'magic-items', 
+    'magic-schools', 
+    'monsters',
+    'races',
+    'skills',
+    'spells',
+    'subclasses',
+    'subraces',
+    'traits',
+    'weapon-properties',
+];
 
 const args = process.argv.slice(2);
 
@@ -35,11 +52,27 @@ async function getEntries(api, count) {
     return results;
 }
 
+function printResults(results) {
+    results.forEach(result => {
+        const output = {
+            name: result[0].name,
+            description: result[0].desc,
+            url: `${BASE_URI}${result[0].url}`
+        }
+        console.log(output);
+    });
+}
+
 if (args.length === 0) {
-    console.log("At least one choice, and a count separated by an = sign; Example: spells=2");
-    console.log("Collections: ", supportedCollections.join(', '));
-} else {
-    const entries = [];
+    console.log("At least one choice, and optionally a count separated by an = sign; Example: spells=2");
+    console.log("Collections available: ", supportedCollections.join(', '));
+    console.log("We're going to pick 2 at random anyway.")
+
+    args.push(supportedCollections[getRandom(supportedCollections.length)]);
+    args.push(supportedCollections[getRandom(supportedCollections.length)]);
+}
+
+const entries = [];
 
     args.forEach(arg => {
         const choices = arg.split('=');
@@ -51,6 +84,5 @@ if (args.length === 0) {
         }
     });
     
-    console.log("Grabbing resources from SRD, let's make something fun");
-    Promise.all(entries).then((results) => console.log(results));
-}
+    console.log("Grabbing resources from SRD, let's make something fun with:", args.join('; '));
+    Promise.all(entries).then((results) => printResults(results));
