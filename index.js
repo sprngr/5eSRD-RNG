@@ -29,8 +29,9 @@ async function getEntries(api, count) {
 
         usedIndexes.push(index);
 
-        results.push((await axios.get(`${BASE_URI}${collection.results[index].url}`)).data)
+        results.push((await axios.get(`${BASE_URI}${collection.results[index].url}`)).data);
     }
+
     return results;
 }
 
@@ -43,7 +44,7 @@ if (args.length === 0) {
     args.forEach(arg => {
         const choices = arg.split('=');
     
-        if (supportedCollections.indexOf(choices[0])) {
+        if (supportedCollections.indexOf(choices[0]) > -1) {
             const collection = choices[0];
             const count = (!isNaN(choices[1]) ? choices[1] : 1);
             entries.push(getEntries(collection, count));
