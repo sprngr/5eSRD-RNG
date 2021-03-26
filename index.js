@@ -3,7 +3,7 @@
 const axios = require('axios').default;
 
 const BASE_URI = 'https://www.dnd5eapi.co';
-const supportedCollections = ['equipment', 'monsters', 'spells', 'conditions', 'damage-types', 'magic-items', 'magic-schools'];
+const supportedCollections = ['conditions', 'damage-types', 'equipment', 'features', 'magic-items', 'magic-schools', 'monsters', 'spells'];
 
 const args = process.argv.slice(2);
 
